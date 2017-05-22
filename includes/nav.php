@@ -20,6 +20,9 @@
 				<li class="">
                     <a href="<?php linkto("pages/invoices/invoices_list.php"); ?>">Invoices</a>
                 </li>
+                <li class="">
+                    <a href="<?php linkto("pages/vendor/vendors_list.php"); ?>">Vendors</a>
+                </li>
 			</ul>
 			<?php 
 			if ($user->isLoggedIn()){
