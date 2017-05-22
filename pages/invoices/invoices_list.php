@@ -65,7 +65,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
                                          invoiceUserId,
                                          users.id as userId,
                                          userName,
-                                         vendors.id,
+                                         vendors.id as vendorId,
                                          vendorName
                                        FROM invoices, users, vendors
                                        WHERE invoiceUserId = users.id AND invoices.vendorId = vendors.id 
@@ -77,7 +77,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
                         <td><?php echo number_format($tinvoice->invoiceTotal, 2); ?></td>
                         <td><?php echo $tinvoice->invoiceCreatedDate; ?></td>
                         <td><a href='<?php linkto("profile.php?userid=$tinvoice->userId"); ?>'><?php echo $tinvoice->userName; ?></td>
-                        <td><?php echo $tinvoice->vendorName; ?></td>
+                        <td><a href='<?php linkto("pages/invoices/vendor.php?vendorid=$tinvoice->vendorId"); ?>'><?php echo $tinvoice->vendorName; ?></a></td>
                     </tr>
             
             <?php
