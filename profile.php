@@ -48,25 +48,28 @@ Redirect::to('index.php');
 					<div class="col-md-3"></div>
 					<div class="col-md-6">
 						<div class="jumbotron">
-							<?php
-							if ($user->data()->id == $userProfile->data()->id || $user->hasPermission('admin')) {
-								
 							
-							?>
 							<div class="row">
 							    <div class="col-md-3 text-left">
                                     <img class="img-responsive img-circle" alt="<?php echo $userProfile->data()->userName . " Profile Photo";  ?>" src="<?php linkto('img/users_img/default.jpg'); ?>" />
                                 </div>
 								<div class="col-md 9 text-right">
+								<?php if($user->data()->id == $userProfile->data()->id || $user->hasPermission('admin')){ ?>
 									<a href="update_profile.php?userid=<?php echo $userProfile->data()->id; ?>"><button class="btn btn-default btn-xs">
 										<span class="fa fa-pencil"></span>
 									</button></a>
-									<a href="changepassword.php"><button class="btn btn-default btn-xs">
-										<span class="fa fa-key"></span>
-									</button></a>
+									<?php } ?>
+									<?php
+										if ($user->data()->id == $userProfile->data()->id) {
+									?>
+										<a href="changepassword.php">
+											<button class="btn btn-default btn-xs">
+												<span class="fa fa-key"></span>
+											</button>
+										</a>
+									<?php } ?>
 								</div>
 							</div>
-							<?php } ?>
 							<div class="space"></div>
 							<div class="row">
 							    <div class="col-md-12">
