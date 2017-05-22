@@ -37,10 +37,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
             <table id="invoicetable" class="display table" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>Invoice ID</th>
+                        <th>Invooice ID</th>
                         <th>Invoice Total</th>
                         <th>Created Date</th>
                         <th>Created By</th>
+                        <th>Vendor</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -49,6 +50,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
                         <th><?php 
                             $totalInvoices = DB::getInstance()->query("SELECT SUM(invoiceTotal) as total FROM invoices");
                             echo number_format($totalInvoices->first()->total,2); ?></th>
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -62,9 +64,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
                                          invoiceCreatedDate,
                                          invoiceUserId,
                                          users.id as userId,
-                                         userName
-                                       FROM invoices, users
-                                       WHERE invoiceUserId = users.id
+                                         userName,
+                                         vendors.id,
+                                         vendorName
+                                       FROM invoices, users, vendors
+                                       WHERE invoiceUserId = users.id AND invoices.vendorId = vendors.id 
                                        ");
                     foreach ($invoices->results() as $tinvoice) {
                     ?>
@@ -73,6 +77,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
                         <td><?php echo number_format($tinvoice->invoiceTotal, 2); ?></td>
                         <td><?php echo $tinvoice->invoiceCreatedDate; ?></td>
                         <td><a href='<?php linkto("profile.php?userid=$tinvoice->userId"); ?>'><?php echo $tinvoice->userName; ?></td>
+                        <td><?php echo $tinvoice->vendorName; ?></td>
                     </tr>
             
             <?php
