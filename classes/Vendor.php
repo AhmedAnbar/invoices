@@ -8,6 +8,8 @@ class Vendor {
         $this->_db = DB::getInstance();
         if($vendor){
             $this->find($vendor);
+        } else {
+            $this->find();
         }
     }
 
@@ -25,8 +27,29 @@ class Vendor {
                 $this->_data = $data->first();
                 return TRUE;
             }
+			return FALSE;
+        } else {
+        	$data = $this->_db->query("SELECT 
+                                         vendors.id,
+                                         vendorName,
+                                         vendorEmailAddress,
+                                         vendorBankAccount,
+                                         vendorType,
+                                         users.id as userId,
+                                         userName,
+                                         invoices.id as invoiceId,
+                                         SUM(invoiceTotal) as invoicesTotal,
+                                         invoiceCreatedDate
+                                       FROM vendors, users, invoices
+                                       WHERE invoices.vendorId = vendors.id AND invoices.invoiceUserId = users.id 
+                                       ");
+            
+            if ($data->count()) {
+                $this->_data = $data->results();
+                return TRUE;
+            }
+			return FALSE;
         }
-        return FALSE;
     }
     public function update($fields = array(), $id = null) {
         if (!$id) {
@@ -52,7 +75,8 @@ class Vendor {
     public function data() {
         return $this->_data;
     }
-    
+	
+	
     
 }
 ?>
