@@ -4,7 +4,7 @@ class Invoice {
             $_data;
 
     
-    public function __construct ($invoice) {
+    public function __construct ($invoice = null) {
         $this->_db = DB::getInstance();
         if($invoice){
             $this->find($invoice);
@@ -52,5 +52,7 @@ class Invoice {
     public function data() {
         return $this->_data;
     }
+    
+    
 }
 ?>

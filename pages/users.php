@@ -86,7 +86,7 @@ if ($duser = escape(Input::get('deleteUser'))) {
 					?>
 					<tr>
 					    <td><?php echo $tuser->id; ?></td>
-						<td><span class="fa fa-user"> <a href='<?php echo "../profile.php?userid=$tuser->id"; ?>'><?php echo $tuser->userName; ?></a></span></td>
+						<td><span class="fa fa-user"> <a href='<?php linkto("profile.php?userid=$tuser->id"); ?>'><?php echo $tuser->userName; ?></a></span></td>
 						<td><?php echo $tuser->userFullName; ?></td>
 						<td><?php echo $tuser->userEmailAddress; ?></td>
 						<td><?php echo $tuser->userJoinDate; ?></td>

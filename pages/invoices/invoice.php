@@ -49,10 +49,6 @@ $invoiceId = escape(Input::get('invoiceid'))
                     ?>
                         
                     <h1>Invoice total is :  <?php echo $Invoice->data()->invoiceTotal; ?></h1>
-                    
-                    <?php if ($user->hasPermission('admin')) { ?>
-                        <h4>You are adminstrator</h4>
-                    <?php } ?>
                     <?php       
                         } else {
                             Session::flash('fmsg', "<h5>You'r not logged in, please login here</h5>");      

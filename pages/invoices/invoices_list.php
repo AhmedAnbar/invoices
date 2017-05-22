@@ -24,16 +24,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
                 -->
         <div class="col-md-12">
             <?php
-            $invoices = DB::getInstance()->query("SELECT 
-                                         invoices.id,
-                                         invoiceTotal,
-                                         invoiceCreatedDate,
-                                         invoiceUserId,
-                                         users.id as userId,
-                                         userName
-                                       FROM invoices, users
-                                       WHERE invoiceUserId = users.id
-                                       ");
+            $invoices = DB::getInstance()->query("SELECT * FROM invoices");
                     if (Session::exists('smsg')) {
                         Success(Session::flash('smsg'));
                         
@@ -41,7 +32,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
                         Danger(Session::flash('fmsg'));
                     }
                 if (!$invoices->count()) {
-                    Danger("No incoice in your database");
+                    Danger("No invoice in your database");
                 } else { ?>
             <table id="invoicetable" class="display table" cellspacing="0" width="100%">
                 <thead>
@@ -78,7 +69,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
                     foreach ($invoices->results() as $tinvoice) {
                     ?>
                     <tr>
-                        <td><?php echo $tinvoice->id; ?></td>
+                        <td><a href='<?php linkto("pages/invoices/invoice.php?invoiceid=$tinvoice->id"); ?>'><?php echo $tinvoice->id; ?></a></td>
                         <td><?php echo number_format($tinvoice->invoiceTotal, 2); ?></td>
                         <td><?php echo $tinvoice->invoiceCreatedDate; ?></td>
                         <td><?php echo $tinvoice->userName; ?></td>
