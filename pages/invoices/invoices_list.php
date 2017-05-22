@@ -37,7 +37,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
             <table id="invoicetable" class="display table" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>Incoice ID</th>
+                        <th>Invoice ID</th>
                         <th>Invoice Total</th>
                         <th>Created Date</th>
                         <th>Created By</th>
@@ -72,7 +72,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
                         <td><a href='<?php linkto("pages/invoices/invoice.php?invoiceid=$tinvoice->id"); ?>'><?php echo $tinvoice->id; ?></a></td>
                         <td><?php echo number_format($tinvoice->invoiceTotal, 2); ?></td>
                         <td><?php echo $tinvoice->invoiceCreatedDate; ?></td>
-                        <td><?php echo $tinvoice->userName; ?></td>
+                        <td><a href='<?php linkto("profile.php?userid=$tinvoice->userId"); ?>'><?php echo $tinvoice->userName; ?></td>
                     </tr>
             
             <?php
