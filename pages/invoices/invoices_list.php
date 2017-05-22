@@ -58,19 +58,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
                 
                 <tbody>
                     <?php
-                    $invoices = DB::getInstance()->query("SELECT 
-                                         invoices.id,
-                                         invoiceTotal,
-                                         invoiceCreatedDate,
-                                         invoiceUserId,
-                                         users.id as userId,
-                                         userName,
-                                         vendors.id as vendorId,
-                                         vendorName
-                                       FROM invoices, users, vendors
-                                       WHERE invoiceUserId = users.id AND invoices.vendorId = vendors.id 
-                                       ");
-                    foreach ($invoices->results() as $tinvoice) {
+                    $invoices = new Invoice();
+                    foreach ($invoices->data() as $tinvoice) {
                     ?>
                     <tr>
                         <td><a href='<?php linkto("pages/invoices/invoice.php?invoiceid=$tinvoice->id"); ?>'><?php echo $tinvoice->id; ?></a></td>
