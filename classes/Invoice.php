@@ -8,6 +8,8 @@ class Invoice {
         $this->_db = DB::getInstance();
         if($invoice){
             $this->find($invoice);
+        } else {
+            $this->find();
         }
     }
 
@@ -25,8 +27,27 @@ class Invoice {
                 $this->_data = $data->first();
                 return TRUE;
             }
+			return FALSE;
+        } else {
+        	$data = $this->_db->query("SELECT 
+                                         invoices.id,
+                                         invoiceTotal,
+                                         invoiceCreatedDate,
+                                         invoiceUserId,
+                                         users.id as userId,
+                                         userName,
+                                         vendors.id as vendorId,
+                                         vendorName
+                                       FROM invoices, users, vendors
+                                       WHERE invoiceUserId = users.id AND invoices.vendorId = vendors.id 
+                                       ");
+            
+            if ($data->count()) {
+                $this->_data = $data->results();
+                return TRUE;
+            }
+			return FALSE;
         }
-        return FALSE;
     }
     public function update($fields = array(), $id = null) {
         if (!$id) {
@@ -53,6 +74,20 @@ class Invoice {
         return $this->_data;
     }
     
-    
+    public function allData() {
+    	$invoices = DB::getInstance()->query("SELECT 
+                                         invoices.id,
+                                         invoiceTotal,
+                                         invoiceCreatedDate,
+                                         invoiceUserId,
+                                         users.id as userId,
+                                         userName,
+                                         vendors.id as vendorId,
+                                         vendorName
+                                       FROM invoices, users, vendors
+                                       WHERE invoiceUserId = users.id AND invoices.vendorId = vendors.id 
+                                       ");
+		return $invoices->results();
+    }
 }
 ?>
