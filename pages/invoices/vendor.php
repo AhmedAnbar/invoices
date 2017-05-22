@@ -57,10 +57,10 @@ $vendorid = Input::get('vendorid')
                                     <img class="img-responsive img-circle" alt="" src="<?php linkto('img/users_img/default.jpg'); ?>" />
                                 </div>
 								<div class="col-md 9 text-right">
-									<a href=""><button class="btn btn-default btn-xs">
+									<a href="#"><button class="btn btn-default btn-xs">
 										<span class="fa fa-pencil"></span>
 									</button></a>
-									<a href="changepassword.php"><button class="btn btn-default btn-xs">
+									<a href="#"><button class="btn btn-default btn-xs">
 										<span class="fa fa-key"></span>
 									</button></a>
 								</div>
