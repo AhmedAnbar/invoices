@@ -36,12 +36,9 @@ class Vendor {
                                          vendorBankAccount,
                                          vendorType,
                                          users.id as userId,
-                                         userName,
-                                         invoices.id as invoiceId,
-                                         SUM(invoiceTotal) as invoicesTotal,
-                                         invoiceCreatedDate
-                                       FROM vendors, users, invoices
-                                       WHERE invoices.vendorId = vendors.id AND invoices.invoiceUserId = users.id 
+                                         userName
+                                       FROM vendors, users
+                                       WHERE vendors.vendorUserId = users.id
                                        ");
             
             if ($data->count()) {

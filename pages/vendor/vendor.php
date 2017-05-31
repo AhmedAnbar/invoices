@@ -4,7 +4,7 @@ if (!$vendorid = Input::get('vendorid') || $user->exists()) {
 Session::flash('fmsg', "You should choose a vendor to view.");
 Redirect::to('index.php');							
 }
-$vendorid = Input::get('vendorid')
+$vendorid = Input::get('vendorid');
 ?>
 <!doctype html>
 <html lang="en">
@@ -60,9 +60,6 @@ $vendorid = Input::get('vendorid')
 									<a href="#"><button class="btn btn-default btn-xs">
 										<span class="fa fa-pencil"></span>
 									</button></a>
-									<a href="#"><button class="btn btn-default btn-xs">
-										<span class="fa fa-key"></span>
-									</button></a>
 								</div>
 							</div>
 							<?php } ?>
@@ -80,6 +77,13 @@ $vendorid = Input::get('vendorid')
 							            </tr>
 							           
 							        </table>
+							        <small class="text-muted">Vendor have invoices with total 
+						  				<?php 
+						  					$id = $vendorProfile->data()->id;
+						                	$totalInvoices = DB::getInstance()->query("SELECT SUM(invoiceTotal) as total FROM invoices WHERE vendorId = $id");
+						                	echo number_format($totalInvoices->first()->total,2); 
+						                ?>
+						            </small>
 							    </div>
 							</div>
 		                </div>
@@ -96,6 +100,50 @@ $vendorid = Input::get('vendorid')
 				<!--
 				page content ends
 				-->
+  	</div>
+  	<div class="row">
+  		<div class="col-md-2"></div>
+  		<div class="col-md-8">
+  			<table id="vendortable" class="display table" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Vendor Id</th>
+                        <th>Vendor Name</th>
+                        <th>Vendor Email</th>
+                        <th>Created By</th>
+                        <th>Bank Account</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                
+                <tbody>
+                    <?php
+                    $invoices = new Invoice();
+                    foreach ($invoices->data() as $tinvoice) {
+                    ?>
+                    <tr>
+                        <td><a href='<?php linkto("pages/invoices/invoice.php?invoiceid=$tinvoice->id"); ?>'><?php echo $tinvoice->id; ?></a></td>
+                        <td><?php echo number_format($tinvoice->invoiceTotal, 2); ?></td>
+                        <td><?php echo $tinvoice->invoiceCreatedDate; ?></td>
+                        <td><a href='<?php linkto("profile.php?userid=$tinvoice->userId"); ?>'><?php echo $tinvoice->userName; ?></td>
+                        <td><a href='<?php linkto("pages/invoices/vendor.php?vendorid=$tinvoice->vendorId"); ?>'><?php echo $tinvoice->vendorName; ?></a></td>
+                    </tr>
+            
+            <?php
+                    }
+            ?>
+                </tbody>
+            </table>           
+  		</div>
+  		<div class="col-md-2"></div>
   	</div>
     </div>
 		<?php include $INC_DIR . "slidebar.php"; ?>

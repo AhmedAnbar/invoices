@@ -248,3 +248,26 @@ $(document).ready(function() {
         select: true
     } );
 } );
+
+$(document).ready(function() {
+    $('#vendortable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'print',
+                text: 'Print all'
+            },
+            {
+                extend: 'print',
+                text: 'Print selected',
+                exportOptions: {
+                    modifier: {
+                        selected: true
+                    }
+                }
+            }
+        ],
+        select: true
+    } );
+} );
+

@@ -66,7 +66,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
                         <td><?php echo number_format($tinvoice->invoiceTotal, 2); ?></td>
                         <td><?php echo $tinvoice->invoiceCreatedDate; ?></td>
                         <td><a href='<?php linkto("profile.php?userid=$tinvoice->userId"); ?>'><?php echo $tinvoice->userName; ?></td>
-                        <td><a href='<?php linkto("pages/invoices/vendor.php?vendorid=$tinvoice->vendorId"); ?>'><?php echo $tinvoice->vendorName; ?></a></td>
+                        <td><a href='<?php linkto("pages/vendor/vendor.php?vendorid=$tinvoice->vendorId"); ?>'><?php echo $tinvoice->vendorName; ?></a></td>
                     </tr>
             
             <?php

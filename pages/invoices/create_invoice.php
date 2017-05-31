@@ -36,7 +36,7 @@ if (!$user->hasPermission('superuser')) {
                                 'min' => 2,
                                 'max' => 20,
                                 'type' => 'number'
-                                ),
+                                )
                            
                             ));
                             if($validation->passed()){
@@ -48,7 +48,8 @@ if (!$user->hasPermission('superuser')) {
                                     $invoice->create(array(
                                         'invoiceTotal' => escape(Input::get('invoiceTotal')),
                                         'invoiceCreatedDate' => date('Y-m-d H:i:s'),
-                                        'invoiceUserId' => $user->data()->id
+                                        'invoiceUserId' => $user->data()->id,
+                                        'vendorId' => Input::get('vendor')
                                         
                                     ));
                                     Session::flash('smsg', "You have been add new invoice");
@@ -69,7 +70,21 @@ if (!$user->hasPermission('superuser')) {
                         <label for="invoiceTotal">Invoice Total</label>
                         <input type="number" step="0.05" class="form-control" id="invoiceTotal" name="invoiceTotal" value="<?php echo escape(Input::get('invoiceTotal'));  ?>" placeholder="eg. 300.00">
                     </div>
-                                          <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+                    <div class="form-group">
+                        <label for="vendor">Vendor</label>
+                        <select class="form-control" name="vendor">
+                        	<option>Select Vendor</option>
+                    <?php
+                    $vendors = new Vendor();
+                    foreach ($vendors->data() as $vendor) {
+                    ?>
+            			<option value="<?php echo $vendor->id; ?>"><?php echo $vendor->vendorName . " ---- " . $vendor->vendorType; ?></option>
+		            <?php
+		            	}
+		            ?>
+                        </select>
+                    </div>
+                        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
                         <button class="btn btn-info" type="submit">Register</button>
                 </form><br>
                 </div>

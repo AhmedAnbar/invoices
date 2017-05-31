@@ -78,8 +78,9 @@ if (!$user->hasPermission('admin')) {
                                         
                                     ));
 									 $newUser = new User(DB::getInstance()->lastId());
+									 
 
-									Session::flash('smsg', "You have been add new user with <a href=\"../profile.php?user={$newUser->data()->userName}\">{$newUser->data()->userName}</a> user name");
+									Session::flash('smsg', "You have been add new user with <a href=\"../profile.php?userid={$newUser->data()->id}\">{$newUser->data()->userName}</a> user name");
 									Redirect::to('pages/users.php');
                                 } catch(Exception $e){
                                     Danger(die($e->getMessage()));

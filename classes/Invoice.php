@@ -74,20 +74,6 @@ class Invoice {
         return $this->_data;
     }
     
-    public function allData() {
-    	$invoices = DB::getInstance()->query("SELECT 
-                                         invoices.id,
-                                         invoiceTotal,
-                                         invoiceCreatedDate,
-                                         invoiceUserId,
-                                         users.id as userId,
-                                         userName,
-                                         vendors.id as vendorId,
-                                         vendorName
-                                       FROM invoices, users, vendors
-                                       WHERE invoiceUserId = users.id AND invoices.vendorId = vendors.id 
-                                       ");
-		return $invoices->results();
-    }
+
 }
 ?>

@@ -15,7 +15,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li class="">
-					<a href="<?php linkto("pages/users.php"); ?>">Users</a>
+					<a href="<?php linkto("pages/users/users.php"); ?>">Users</a>
 				</li>
 				<li class="">
                     <a href="<?php linkto("pages/invoices/invoices_list.php"); ?>">Invoices</a>
