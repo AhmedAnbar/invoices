@@ -126,15 +126,16 @@ $vendorid = Input::get('vendorid');
                 
                 <tbody>
                     <?php
-                    $invoices = new Invoice();
-                    foreach ($invoices->data() as $tinvoice) {
+                    $id = $vendorProfile->data()->id;
+                    $invoices = DB::getInstance()->query("SELECT * FROM invoices WHERE vendorId = $id");
+                    foreach ($invoices->results() as $tinvoice) {
                     ?>
                     <tr>
                         <td><a href='<?php linkto("pages/invoices/invoice.php?invoiceid=$tinvoice->id"); ?>'><?php echo $tinvoice->id; ?></a></td>
                         <td><?php echo number_format($tinvoice->invoiceTotal, 2); ?></td>
                         <td><?php echo $tinvoice->invoiceCreatedDate; ?></td>
-                        <td><a href='<?php linkto("profile.php?userid=$tinvoice->userId"); ?>'><?php echo $tinvoice->userName; ?></td>
-                        <td><a href='<?php linkto("pages/invoices/vendor.php?vendorid=$tinvoice->vendorId"); ?>'><?php echo $tinvoice->vendorName; ?></a></td>
+                        <td><a href='<?php linkto("profile.php?userid=$tinvoice->invoiceUserId"); ?>'><?php echo $tinvoice->invoiceUserId; ?></td>
+                        <td><a href='<?php linkto("pages/vendor/vendor.php?vendorid=$tinvoice->vendorId"); ?>'><?php echo $tinvoice->vendorId; ?></a></td>
                     </tr>
             
             <?php
