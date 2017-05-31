@@ -60,7 +60,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
                     foreach ($vendors->data() as $tvendor) {
                     ?>
                     <tr>
-                        <td><a href='<?php linkto("pages/invoices/vendor.php?vendorid=$tvendor->id"); ?>'><?php echo $tvendor->id; ?></a></td>
+                        <td><a href='<?php linkto("pages/vendor/vendor.php?vendorid=$tvendor->id"); ?>'><?php echo $tvendor->id; ?></a></td>
                         <td><?php echo $tvendor->vendorName; ?></td>
                         <td><?php echo $tvendor->vendorEmailAddress; ?></td>
                         <td><a href='<?php linkto("profile.php?userid=$tvendor->userId"); ?>'><?php echo $tvendor->userName; ?></a></td>
