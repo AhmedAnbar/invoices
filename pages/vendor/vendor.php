@@ -104,7 +104,19 @@ $vendorid = Input::get('vendorid');
   	<div class="row">
   		<div class="col-md-2"></div>
   		<div class="col-md-8">
-  			<table id="vendortable" class="display table" cellspacing="0" width="100%">
+  			
+            <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#invoices" aria-controls="invoices" role="tab" data-toggle="tab">Invoices</a></li>
+			    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+			    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+			    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+			  </ul>
+			
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="invoices">
+			    	<table id="vendorinvoices" class="display table" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Vendor Id</th>
@@ -159,7 +171,12 @@ $vendorid = Input::get('vendorid');
                     }
             ?>
                 </tbody>
-            </table>           
+            </table>  
+			    </div>
+			    <div role="tabpanel" class="tab-pane" id="profile">...</div>
+			    <div role="tabpanel" class="tab-pane" id="messages">...</div>
+			    <div role="tabpanel" class="tab-pane" id="settings">...</div>
+			  </div>         
   		</div>
   		<div class="col-md-2"></div>
   	</div>
