@@ -270,4 +270,9 @@ $(document).ready(function() {
         select: true
     } );
 } );
-
+$(document).ready(function() {
+    $('#vendorinvoices').DataTable( {
+        
+        select: true
+    } );
+} );
