@@ -1,5 +1,9 @@
 <?php 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
+if (!$user->isLoggedIn()) 
+    {
+	   Redirect::to('login.php' );
+    }
 if (!$vendorid = Input::get('vendorid') || $user->exists()) {
 Session::flash('fmsg', "You should choose a vendor to view.");
 Redirect::to('index.php');							

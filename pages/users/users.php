@@ -1,5 +1,9 @@
 <?php 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php"; 
+if (!$user->isLoggedIn()) 
+    {
+	   Redirect::to('login.php' );
+    }
 if (!$user->hasPermission('admin')) {
 	Session::flash('fmsg', 'You Don\'t have access to this page');
 	Redirect::to('index.php');

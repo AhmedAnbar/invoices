@@ -1,5 +1,9 @@
 <?php 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php"; 
+if (!$user->isLoggedIn()) 
+    {
+	   Redirect::to('login.php' );
+    }
 ?>
 <!doctype html>
 <html lang="en">
