@@ -272,7 +272,11 @@ $(document).ready(function() {
 } );
 $(document).ready(function() {
     $('#vendorinvoices').DataTable( {
-        
+        "paging":   false,
+        "ordering": true,
+        "info":     true,
+        "search": false,
         select: true
     } );
 } );
+

@@ -8,6 +8,11 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
+			<span>
+				<?php $img = new HTMLImage('', array('id' => 'logo', 'alt' => 'logo image', 'src' => 'img/logo.png', 'class' => 'img-round'));
+				echo $img;
+				?>
+			</span>
 			<a class="navbar-brand" href="/invoices/index.php">Invoices System</a>
 		</div>
 
@@ -22,6 +27,9 @@
                 </li>
                 <li class="">
                     <a href="<?php linkto("pages/vendor/vendors_list.php"); ?>">Vendors</a>
+                </li>
+                <li class="">
+                    <a href="<?php linkto("test.php"); ?>">Test OOP</a>
                 </li>
 			</ul>
 			<?php 
@@ -66,6 +74,7 @@
 <button type="button" class="hamburger is-closed js-toggle-left-slidebar navbar‐right" data-toggle="offcanvas">
 	<span class="hamb-top"></span>
 	<span class="hamb-middle"></span>
+	<span class="hamb-middle2"></span>
 	<span class="hamb-bottom"></span>
 </button>
 

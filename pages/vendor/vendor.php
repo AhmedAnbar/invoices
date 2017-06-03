@@ -1,9 +1,5 @@
 <?php 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
-if (!$user->isLoggedIn()) 
-    {
-	   Redirect::to('login.php' );
-    }
 if (!$vendorid = Input::get('vendorid') || $user->exists()) {
 Session::flash('fmsg', "You should choose a vendor to view.");
 Redirect::to('index.php');							
@@ -73,6 +69,7 @@ $vendorid = Input::get('vendorid');
 							        <table class="table-hover table-striped">
 							            <tr>
 							                <td><h5><span class="fa fa-user"></span> Vendor Name:</h5></td>
+							                
 							                <td><span class="text-left"><h5 class="text-left"><?php echo $vendorProfile->data()->vendorName; ?></h5></span></td>
 							            </tr>
 							            <tr>

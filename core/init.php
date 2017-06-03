@@ -21,6 +21,25 @@ $GLOBALS['config'] = array(
   	'name' => 'http://127.0.0.1/invoices/'
   )
 );
+
+/**
+
+* Checks for magic_quotes_gpc = On and strips them from incoming
+
+* requests if necessary
+
+*/
+
+if (get_magic_quotes_gpc()) {
+
+	$_GET = array_map('stripslashes', $_GET);
+	
+	$_POST = array_map('stripslashes', $_POST);
+	
+	$_COOKIE = array_map('stripslashes', $_COOKIE);
+
+}
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/invoices/functions/functions.php';
 
 spl_autoload_register(function($class) {

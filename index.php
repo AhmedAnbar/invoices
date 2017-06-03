@@ -49,5 +49,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/invoices/core/init.php";
     </div>
 		<?php include $INC_DIR . "slidebar.php"; ?>
 		<?php include $INC_DIR . "footer.php"; ?>
+		
+		
 </body>
 </html>

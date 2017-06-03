@@ -233,9 +233,11 @@ html { height: 100%;}
 
 .hamburger.is-closed .hamb-top,
 .hamburger.is-closed .hamb-middle,
+.hamburger.is-closed .hamb-middle2,
 .hamburger.is-closed .hamb-bottom,
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-middle,
+.hamburger.is-open .hamb-middle2,
 .hamburger.is-open .hamb-bottom {
   position: absolute;
   left: 0px;
@@ -244,32 +246,50 @@ html { height: 100%;}
 }
 .hamburger.is-closed .hamb-top,
 .hamburger.is-closed .hamb-middle,
+.hamburger.is-closed .hamb-middle2,
 .hamburger.is-closed .hamb-bottom {
   background-color: #ddd;
 }
 .hamburger.is-closed .hamb-top {
-  top: 5px;
+  top: 3px;
   -webkit-transition: all .35s ease-in-out;
 }
 .hamburger.is-closed .hamb-middle {
-  top: 50%;
+  top: 13px;
+  margin-top: -2px;
+}
+.hamburger.is-closed .hamb-middle2 {
+  top: 21px;
   margin-top: -2px;
 }
 .hamburger.is-closed .hamb-bottom {
-  bottom: 5px;
+  top: 27px;
   -webkit-transition: all .35s ease-in-out;
 }
 
 .hamburger.is-closed:hover .hamb-top {
-  top: 0;
+  top: -5px;
+  background-color:red;
+  -webkit-transition: all .35s ease-in-out;
+}
+.hamburger.is-closed:hover .hamb-middle {
+  left: -10px;
+  background-color:green;
+  -webkit-transition: all .35s ease-in-out;
+}
+.hamburger.is-closed:hover .hamb-middle2 {
+  left: 10px;
+  background-color:yellow;
   -webkit-transition: all .35s ease-in-out;
 }
 .hamburger.is-closed:hover .hamb-bottom {
-  bottom: 0;
+  top: 35px;
+  background-color:gray;
   -webkit-transition: all .35s ease-in-out;
 }
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-middle,
+.hamburger.is-open .hamb-middle2,
 .hamburger.is-open .hamb-bottom {
   background-color: #ddd;
 }
@@ -283,6 +303,7 @@ html { height: 100%;}
   -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);
 }
 .hamburger.is-open .hamb-middle { display: none; }
+.hamburger.is-open .hamb-middle2 { display: none; }
 .hamburger.is-open .hamb-bottom {
   -webkit-transform: rotate(-45deg);
   -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);
